@@ -1,10 +1,31 @@
- 
+.App {
+    display: flex; 
+    justify-content: center; /* Horizontal center sub element*/
+    align-items: center; /* Vertical center sub element*/
+    flex-direction: column; /* Vertical align sub element */
+    height: 100vh; /* Fill the entire height of the viewport */
+    position: relative;
+    text-align: center;
+  
+    --container-width: 400px; 
+    --container-height: 260px; 
+}
+  
 .container {
     text-align: center;
-    width: 400px;
-    height: 260px;
+    width: calc(var(--container-width));
+    height: calc(var(--container-height));
     margin: auto;
     border: 3px solid black;
+}
+
+/* Two white triangle to cover the rectangle */
+.cover-container {
+    position: absolute;
+    border-bottom: calc(var(--container-height)) solid transparent;
+    border-left: calc(var(--container-width) / 2) solid white;
+    border-right: calc(var(--container-width) / 2) solid white;
+    z-index: 10; /* Let it override container */
 }
 
 .color-bar {

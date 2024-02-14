@@ -14,6 +14,8 @@ const App = () => {
         <div className="color-bar brown">brown</div>
         <div className="color-bar green">green</div>
       </div>
+      {/* Use two white triangle to cover the container */}
+      <div className="cover-container"></div>
     </div>
   );
 };

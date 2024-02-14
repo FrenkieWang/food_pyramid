@@ -26,6 +26,7 @@
     border-left: calc(var(--container-width) / 2) solid white;
     border-right: calc(var(--container-width) / 2) solid white;
     z-index: 10; /* Let it override container */
+    pointer-events: none; /* Allow pointer pass through this div */
 }
 
 .color-bar {
@@ -74,12 +75,19 @@
     height: 25px; 
     border-radius: 50%; /* Make the border into radius*/
     z-index: 20;  /* Let button higher than override-container */
-  }
-  
-.ctrl{
-    cursor: pointer; /*  When hover, the cusor is a pointer */
 }
-  
+
 .num{
     pointer-events: none; /* Ban clicking */
 }
+
+.ctrl{
+    cursor: pointer; /*  When hover, the cusor is a pointer */
+    opacity: 0;
+    transition: opacity 0.3s ease; /* 添加过渡效果，使透明度的变化更平滑 */
+}
+
+/* 当鼠标悬停在.color-bar上时，显示.ctrl按钮 */
+.color-bar:hover .ctrl {
+    opacity: 1;
+  }

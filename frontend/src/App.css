@@ -1,9 +1,16 @@
-.App {
+.App{
     display: flex; 
     justify-content: center; /* Horizontal center sub element*/
     align-items: center; /* Vertical center sub element*/
     flex-direction: column; /* Vertical align sub element */
     height: 100vh; /* Fill the entire height of the viewport */
+}
+
+.Pyramid {
+    display: flex; 
+    justify-content: center; /* Horizontal center sub element*/
+    align-items: center; /* Vertical center sub element*/
+    flex-direction: column; /* Vertical align sub element */
     position: relative;
     text-align: center;
   
@@ -16,7 +23,6 @@
     width: calc(var(--container-width));
     height: calc(var(--container-height));
     margin: auto;
-    border: 3px solid black;
 }
 
 /* Two white triangle to cover the rectangle */
@@ -90,4 +96,16 @@
 /* 当鼠标悬停在.color-bar上时，显示.ctrl按钮 */
 .color-bar:hover .ctrl {
     opacity: 1;
-  }
+}
+
+.text{
+    font-weight: bold;
+}
+
+.title{
+    margin-bottom : 20px;
+}
+
+.user{
+    margin-top : 20px;
+}

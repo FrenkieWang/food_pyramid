@@ -13,6 +13,13 @@ const App = () => {
   };
   const [layers, setLayers] = useState(initialLayers);
 
+  const today = new Date().toISOString().split('T')[0];
+
+  const formatDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return `[${day}-${month}-${year}]`;
+  };
+
   // Handle increase/decrease button click events
   const handleChange = (color, diff) => {
     setLayers((prevLayers) => {
@@ -29,25 +36,30 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="container" style={{ width:`${containerWidth}px`, height: `${containerHeight}px` }}>
-        {Object.keys(layers).map((color, index) => (
-          <React.Fragment key={color}>
-            <div className="color-bar" style={{ height: `${layers[color].height}px`, backgroundColor: color }}>
-              <button className="btn ctrl" onClick={() => handleChange(color, 1)}>+</button>
-              <button className="btn num">{layers[color].num}</button>
-              <button className="btn ctrl" onClick={() => handleChange(color, -1)}>-</button>
-            </div>
-            {/* Add Spacer only between 1-2 and 2-3 Layer*/}
-            {index === 0 || index === 1 ? <div className="spacer"></div> : null}
-          </React.Fragment>
-        ))}
+      <div className="title text">Figure</div>
+      <div className="Pyramid">
+        <div className="container" style={{ width:`${containerWidth}px`, height: `${containerHeight}px` }}>
+          {Object.keys(layers).map((color, index) => (
+            <React.Fragment key={color}>
+              <div className="color-bar" style={{ height: `${layers[color].height}px`, backgroundColor: color }}>
+                <button className="btn ctrl" onClick={() => handleChange(color, 1)}>+</button>
+                <button className="btn num">{layers[color].num}</button>
+                <button className="btn ctrl" onClick={() => handleChange(color, -1)}>-</button>
+              </div>
+              {/* Add Spacer only between 1-2 and 2-3 Layer*/}
+              {index === 0 || index === 1 ? <div className="spacer"></div> : null}
+            </React.Fragment>
+          ))}
+        </div>
+        {/* Use two white triangle to cover the container */}
+        <div className="cover-container" style={{ 
+          borderLeft: `${containerWidth / 2}px solid white`,
+          borderRight: `${containerWidth / 2}px solid white`,
+          borderBottom: `${containerHeight}px solid transparent` // 保持border-bottom不变
+        }}></div>
       </div>
-      {/* Use two white triangle to cover the container */}
-      <div className="cover-container" style={{ 
-        borderLeft: `${containerWidth / 2}px solid white`,
-        borderRight: `${containerWidth / 2}px solid white`,
-        borderBottom: `${containerHeight}px solid transparent` // 保持border-bottom不变
-      }}></div>
+      <div className = "user text">My Food Pyramid</div>
+      <div className = "date text">{formatDate(today)}</div>
     </div>
   );
 };

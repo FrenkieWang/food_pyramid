@@ -5,14 +5,38 @@ const App = () => {
   return (
     <div className="App">
       <div className="container">
-        <div className="color-bar red">red</div>
-        <div className="spacer">white</div>
-        <div className="color-bar orange">orange</div>
-        <div className="spacer">white</div>
-        <div className="color-bar yellow">yellow</div>
-        <div className="color-bar blue">blue</div>
-        <div className="color-bar brown">brown</div>
-        <div className="color-bar green">green</div>
+        <div className="color-bar red">
+          <button className="btn ctrl">+</button>
+          <button className="btn num">2</button>
+          <button className="btn ctrl">-</button>
+        </div>
+        <div className="spacer"></div>
+        <div className="color-bar orange">
+          <button className="btn ctrl">+</button>
+          <button className="btn num">2</button>
+          <button className="btn ctrl">-</button>
+        </div>
+        <div className="spacer"></div>
+        <div className="color-bar yellow">
+          <button className="btn ctrl">+</button>
+          <button className="btn num">2</button>
+          <button className="btn ctrl">-</button>
+        </div>
+        <div className="color-bar blue">
+          <button className="btn ctrl">+</button>
+          <button className="btn num">2</button>
+          <button className="btn ctrl">-</button>
+        </div>
+        <div className="color-bar brown">
+          <button className="btn ctrl">+</button>
+          <button className="btn num">2</button>
+          <button className="btn ctrl">-</button>
+        </div>
+        <div className="color-bar green">
+          <button className="btn ctrl">+</button>
+          <button className="btn num">2</button>
+          <button className="btn ctrl">-</button>
+        </div>
       </div>
       {/* Use two white triangle to cover the container */}
       <div className="cover-container"></div>

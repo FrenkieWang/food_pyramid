@@ -1,43 +1,51 @@
+ 
+.container {
+    text-align: center;
+    width: 400px;
+    height: 260px;
+    margin: auto;
+    border: 3px solid black;
+}
 
 .color-bar {
-display: flex; /* flex container */
-justify-content: center; /* Horizontal center sub element*/
-align-items: center; /* Vertical center sub element*/
-height: 40px;
-width: 100%;
+    display: flex; /* flex container */
+    justify-content: center; /* Horizontal center sub element*/
+    align-items: center; /* Vertical center sub element*/
+    height: 40px;
+    width: 100%;
 }
 
 /* Set background color for each element */
 .red {
-background-color: red;
+    background-color: red;
 }
 
 .orange {
-background-color: orange;
+    background-color: orange;
 }
 
 .yellow {
-background-color: yellow;
+    background-color: yellow;
 }
 
 .blue {
-background-color: blue;
+    background-color: blue;
 }
 
 .brown {
-background-color: brown;
+    background-color: brown;
 }
 
 .green {
-background-color: green;
+    background-color: green;
 }
 
 /* Set style for spacer */
 .spacer {
-background-color: white;
-height: 10px;
-width: 100%;
-display: flex; /* flex container */
-justify-content: center; /* Horizontal center sub element*/
-align-items: center; /* Vertical center sub element*/
+    background-color: white;
+    height: 10px;
+    width: 100%;
+    display: flex; /* flex container */
+    justify-content: center; /* Horizontal center sub element*/
+    align-items: center; /* Vertical center sub element*/
 }

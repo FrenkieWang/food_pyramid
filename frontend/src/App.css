@@ -9,7 +9,6 @@
     justify-content: center; /* Horizontal center sub element*/
     align-items: center; /* Vertical center sub element*/
     flex-direction: column; /* Vertical align sub element */
-    height: 100vh; /* Fill the entire height of the viewport */
 }
 
 .Pyramid {

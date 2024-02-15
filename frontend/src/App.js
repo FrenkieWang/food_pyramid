@@ -4,12 +4,12 @@ import './App.css';
 const App = () => {
   // Initialize the State of Layer
   const initialLayers = {
-    red: { num: 2, height: 40 },
-    orange: { num: 2, height: 40 },
-    yellow: { num: 2, height: 40 },
-    dodgerblue: { num: 2, height: 40 },
-    darkgoldenrod : { num: 2, height: 40 },
-    limegreen: { num: 2, height: 40 }
+    red: { num: 1, height: 30, colorState: 'normal' },
+    orange: { num: 1, height: 30, colorState: 'normal' },
+    yellow: { num: 2, height: 40, colorState: 'normal' },
+    dodgerblue: { num: 3, height: 50, colorState: 'normal' },
+    darkgoldenrod : { num: 4, height: 60, colorState: 'normal' },
+    limegreen: { num: 6, height: 80, colorState: 'normal' }
   };
   const [layers, setLayers] = useState(initialLayers);
 
@@ -20,12 +20,38 @@ const App = () => {
     return `[${day}-${month}-${year}]`;
   };
 
+  // Define the valid range for each layer
+  const validRanges = {
+    red: [0, 0],
+    orange: [0, 1],
+    yellow: [2, 2],
+    dodgerblue: [3, 3],
+    darkgoldenrod: [3, 5],
+    limegreen: [5, 7]
+  };
+
   // Handle increase/decrease button click events
-  const handleChange = (color, diff) => {
+  const handleChange = (color, diff, index) => {
     setLayers((prevLayers) => {
       const newLayer = { ...prevLayers };
       const newNum = Math.max(0, Math.min(9, newLayer[color].num + diff)); // num range [0 - 9]
-      newLayer[color] = { num: newNum, height: 40 + (newNum -2) * 10 }; // Change height of that Layer
+
+      const initialNum = initialLayers[color].num;
+      const initialHeight = initialLayers[color].height;
+
+      const [min, max] = validRanges[color];
+      let newColorState = 'normal';
+
+      if (newNum < min) {
+        newColorState = index % 2 === 0 ? 'dimgray' :'gray'; // Below valid range
+      } else if (newNum > max) {
+        newColorState = index % 2 === 0 ? 'crimson' :'red'; // Above valid range
+      } // Making color hierarchical
+
+      // Only num 0 in Layer 1 is normal
+      if(color === 'red' && newNum === 0) newColorState = 'lightpink'
+
+      newLayer[color] = { num: newNum, height: initialHeight + (newNum - initialNum) * 10, colorState: newColorState }; // Change height of that Layer
       return newLayer;
     });
   };
@@ -36,15 +62,20 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="title text">Figure 1</div>
+      <div className="title text">
+        Figure 1
+      </div>
       <div className="Pyramid">
         <div className="container" style={{ width:`${containerWidth}px`, height: `${containerHeight}px` }}>
           {Object.keys(layers).map((color, index) => (
             <React.Fragment key={color}>
-              <div className={`color-bar color-bar-${index + 1}`} style={{ height: `${layers[color].height}px`, backgroundColor: color }}>
-                <button className="btn ctrl" onClick={() => handleChange(color, 1)}>+</button>
+              <div className={`color-bar color-bar-${index + 1}`} style={{ 
+                height: `${layers[color].height}px`, 
+                backgroundColor: layers[color].colorState === 'normal' ? color : layers[color].colorState
+              }}>
+                <button className="btn ctrl" onClick={() => handleChange(color, 1, index + 1)}>+</button>
                 <button className="btn num">{layers[color].num}</button>
-                <button className="btn ctrl" onClick={() => handleChange(color, -1)}>-</button>
+                <button className="btn ctrl" onClick={() => handleChange(color, -1, index + 1)}>-</button>
               </div>
               {/* Add Spacer only between 1-2 and 2-3 Layer*/}
               {index === 0 || index === 1 ? <div className="spacer"></div> : null}
@@ -55,7 +86,7 @@ const App = () => {
         <div className="cover-container" style={{ 
           borderLeft: `${containerWidth / 2 + 1}px solid white`,  /* +1 Make it cover the border */
           borderRight: `${containerWidth / 2 + 1}px solid white`,
-          borderBottom: `${containerHeight}px solid transparent` 
+          borderBottom: `${containerHeight + 1}px solid transparent` 
         }}></div>
       </div>
       <div className = "user text">My Food Pyramid</div>

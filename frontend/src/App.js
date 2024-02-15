@@ -7,9 +7,9 @@ const App = () => {
     red: { num: 2, height: 40 },
     orange: { num: 2, height: 40 },
     yellow: { num: 2, height: 40 },
-    blue: { num: 2, height: 40 },
-    brown: { num: 2, height: 40 },
-    green: { num: 2, height: 40 }
+    dodgerblue: { num: 2, height: 40 },
+    darkgoldenrod : { num: 2, height: 40 },
+    limegreen: { num: 2, height: 40 }
   };
   const [layers, setLayers] = useState(initialLayers);
 
@@ -36,12 +36,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="title text">Figure</div>
+      <div className="title text">Figure 1</div>
       <div className="Pyramid">
         <div className="container" style={{ width:`${containerWidth}px`, height: `${containerHeight}px` }}>
           {Object.keys(layers).map((color, index) => (
             <React.Fragment key={color}>
-              <div className="color-bar" style={{ height: `${layers[color].height}px`, backgroundColor: color }}>
+              <div className={`color-bar color-bar-${index + 1}`} style={{ height: `${layers[color].height}px`, backgroundColor: color }}>
                 <button className="btn ctrl" onClick={() => handleChange(color, 1)}>+</button>
                 <button className="btn num">{layers[color].num}</button>
                 <button className="btn ctrl" onClick={() => handleChange(color, -1)}>-</button>
@@ -53,9 +53,9 @@ const App = () => {
         </div>
         {/* Use two white triangle to cover the container */}
         <div className="cover-container" style={{ 
-          borderLeft: `${containerWidth / 2}px solid white`,
-          borderRight: `${containerWidth / 2}px solid white`,
-          borderBottom: `${containerHeight}px solid transparent` // 保持border-bottom不变
+          borderLeft: `${containerWidth / 2 + 1}px solid white`,  /* +1 Make it cover the border */
+          borderRight: `${containerWidth / 2 + 1}px solid white`,
+          borderBottom: `${containerHeight}px solid transparent` 
         }}></div>
       </div>
       <div className = "user text">My Food Pyramid</div>

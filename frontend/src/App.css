@@ -1,3 +1,9 @@
+/* Apply box-sizing to all elements
+   ignore padding and border */
+* {
+    box-sizing: border-box;
+}
+
 .App{
     display: flex; 
     justify-content: center; /* Horizontal center sub element*/
@@ -43,32 +49,11 @@
     width: 100%;
 }
 
-/* Set background color for each element */
-.red {
-    background-color: red;
+.color-bar-1 {
+    align-items: flex-end ; /* Clild element at the bottom */
+    padding-bottom: 10px; /* Distance from bottom */
 }
 
-.orange {
-    background-color: orange;
-}
-
-.yellow {
-    background-color: yellow;
-}
-
-.blue {
-    background-color: blue;
-}
-
-.brown {
-    background-color: brown;
-}
-
-.green {
-    background-color: green;
-}
-
-/* Set style for spacer */
 .spacer {
     background-color: white;
     height: 10px;
@@ -90,10 +75,10 @@
 .ctrl{
     cursor: pointer; /*  When hover, the cusor is a pointer */
     opacity: 0;
-    transition: opacity 0.3s ease; /* 添加过渡效果，使透明度的变化更平滑 */
+    transition: opacity 0.3s ease; /* Make smooth change in transparancy */
 }
 
-/* 当鼠标悬停在.color-bar上时，显示.ctrl按钮 */
+/* When hover at color-bar, show the ctrl button */
 .color-bar:hover .ctrl {
     opacity: 1;
 }

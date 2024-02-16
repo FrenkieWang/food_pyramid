@@ -4,12 +4,12 @@ import './App.css';
 const App = () => {
 
   const initialAdultLayers = {
-    red: { num: 1, height: 30, colorState: 'normal' },
-    orange: { num: 1, height: 30, colorState: 'normal' },
-    yellow: { num: 2, height: 40, colorState: 'normal' },
-    dodgerblue: { num: 3, height: 50, colorState: 'normal' },
-    darkgoldenrod : { num: 4, height: 60, colorState: 'normal' },
-    limegreen: { num: 6, height: 80, colorState: 'normal' }
+    red: { num: 1, height: 30, btnBGColor: 'white' },
+    orange: { num: 1, height: 30, btnBGColor: 'white' },
+    yellow: { num: 2, height: 40, btnBGColor: 'white' },
+    dodgerblue: { num: 3, height: 50, btnBGColor: 'white' },
+    darkgoldenrod : { num: 4, height: 60, btnBGColor: 'white' },
+    limegreen: { num: 6, height: 80, btnBGColor: 'white' }
   };
   const [layers, setLayers] = useState(initialAdultLayers);
 
@@ -53,7 +53,7 @@ const App = () => {
   const [age, setAge] = useState('Adult');  
   const changeAge = () => {
     const newAge = (age === 'Adult' ? 'Child' : 'Adult'); 
-    setAge(newAge);
+    setAge(newAge);    
 
     // Change Valid Ranges   
     setValidRanges(prevValidRanges => {
@@ -71,11 +71,13 @@ const App = () => {
       const newLayers = initialAdultLayers;
 
       if (newAge === 'Child') {
-        newLayers.dodgerblue = { num: 5, height: 70, colorState: 'normal' };
+        newLayers.dodgerblue = { num: 5, height: 70, btnBGColor: 'white' };
       } 
 
       return newLayers;
     });    
+
+    setSelectedDate(new Date());
   };
 
   // Handle increase/decrease button click events
@@ -88,21 +90,21 @@ const App = () => {
       const prevHeight = layers[color].height;
 
       const [min, max] = validRanges[color];
-      let newColorState = 'normal';
+      let newBtnBGColor = 'white';
 
       if (newNum < min) {
-        newColorState = index % 2 === 0 ? 'dimgray' :'gray'; // Below valid range
+        newBtnBGColor = "lightskyblue"; 
       } else if (newNum > max) {
-        newColorState = index % 2 === 0 ? 'crimson' :'red'; // Above valid range
-      } // Making color hierarchical
-
-      // Only num 0 in Layer 1 is normal
-      if(color === 'red' && newNum === 0) newColorState = 'lightpink'
+        newBtnBGColor = "lightpink"; 
+      } else {
+        newBtnBGColor = "white"; 
+      }
 
       // Change number and height of this layer
       newLayer[color] = { 
         num: newNum, 
-        height: prevHeight + (newNum - prevNum) * 10, colorState: newColorState 
+        height: prevHeight + (newNum - prevNum) * 10,
+        btnBGColor: newBtnBGColor
       };
 
       return newLayer;
@@ -127,10 +129,13 @@ const App = () => {
             <React.Fragment key={color}>
               <div className={`color-bar color-bar-${index + 1}`} style={{ 
                 height: `${layers[color].height}px`, 
-                backgroundColor: layers[color].colorState === 'normal' ? color : layers[color].colorState
+                backgroundColor: color
               }}>
                 <button className="btn ctrl" onClick={() => handleButtonEvents(color, 1, index + 1)}>+</button>
-                <button className="btn num">{layers[color].num}</button>
+                <button 
+                  className="btn num" 
+                  style={{ backgroundColor: layers[color].btnBGColor }}
+                >{layers[color].num}</button>
                 <button className="btn ctrl" onClick={() => handleButtonEvents(color, -1, index + 1)}>-</button>
               </div>
               {/* Add Spacer only between 1-2 and 2-3 Layer*/}

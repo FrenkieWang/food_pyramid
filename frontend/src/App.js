@@ -23,8 +23,18 @@ const App = () => {
   };
   const [validRanges, setValidRanges] = useState(initialAdultValidRanges);
 
-  const today = new Date().toISOString().split('T')[0];
-  const formatDate = (dateString) => {
+  // new Date() is TODAY!
+  const [selectedDate, setSelectedDate] = useState(new Date()); 
+  const [isEditingDate, setIsEditingDate] = useState(false); 
+  const handleEditDate = () => {
+    setIsEditingDate(true); 
+  };
+  const handleChangeDate = (event) => {
+    setSelectedDate(event.target.value); 
+    setIsEditingDate(false); // edit complete
+  };  
+  const formatDate = (date) => {
+    const dateString = new Date(date).toISOString().split('T')[0];
     const [year, month, day] = dateString.split('-');
     return `[${day}-${month}-${year}]`;
   };
@@ -94,10 +104,10 @@ const App = () => {
 
   return (
     <div className="App">
+      <button onClick={handleEditDate}>Choose a Date</button>
       <div className = "title">
-        Switch Pyramid &nbsp;
         <button className = "ageSelect" onClick={changeAge}>
-          {age}
+          Switch Pyramid
         </button>
       </div>
       <div className="Pyramid">
@@ -126,9 +136,24 @@ const App = () => {
         }}></div>
       </div>
 
-      <div className = "user text">My Food Pyramid</div>
-      <div className = "date text">{formatDate(today)}</div>
-    </div>
+      <div className = "user text">
+        <span style={{color:'red'}}>{age}'s</span> Food Pyramid
+      </div>
+      {/* Conditional Rendering according to 'isEditingDate' Status */}
+      <div className="date text">
+        {isEditingDate ? (
+          <input
+            type="date"
+            defaultValue={selectedDate}
+            onBlur={handleChangeDate} // When click other area
+            autoFocus // User can input immediately
+          />
+        ) : (
+          formatDate(selectedDate)
+        )}
+      </div>
+      
+    </div> // end of App
   );
 };
 

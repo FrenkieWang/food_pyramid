@@ -1,5 +1,5 @@
 /* Apply box-sizing to all elements
-   ignore padding and border */
+   ignore 'padding' and 'border' */
 * {
     box-sizing: border-box;
 }
@@ -87,6 +87,10 @@
 }
 
 .title{
+    color: gray;
+}
+
+.ageSelect{
     margin-bottom : 20px;
 }
 

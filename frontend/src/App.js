@@ -4,7 +4,7 @@ import './App.css';
 const App = () => {
 
   const initialAdultLayers = {
-    red: { num: 1, height: 30, btnBGColor: 'white' },
+    red: { num: 0, height: 20, btnBGColor: 'white' },
     orange: { num: 1, height: 30, btnBGColor: 'white' },
     yellow: { num: 2, height: 40, btnBGColor: 'white' },
     dodgerblue: { num: 3, height: 50, btnBGColor: 'white' },
@@ -12,6 +12,15 @@ const App = () => {
     limegreen: { num: 6, height: 80, btnBGColor: 'white' }
   };
   const [layers, setLayers] = useState(initialAdultLayers);
+
+  const contentLines = [
+    "foods and drinks high in fat, sugar and salt",
+    "fats, spreads and oils",
+    "Meat, poultry, fish, eggs, beans and nuts",
+    "Milk, yogurt and cheese",
+    "Wholemeal cereals and breads, potatoes, pasta and rice",
+    "Vegetables, salad and fruit"
+  ];
 
   const initialAdultValidRanges = {
     red: [0, 0],
@@ -168,6 +177,20 @@ const App = () => {
           formatDate(selectedDate)
         )}
       </div>
+      {contentLines.map((content, index) => {
+        // 获取对应颜色的范围
+        const color = Object.keys(validRanges)[index];
+        const range = validRanges[color];
+
+        return (
+          <p key={index} style={{ 
+            color: color,
+            backgroundColor: color === 'yellow' ? 'black' : ''
+          }}>
+            {content}: <b>[{range[0]} - {range[1]}]</b>
+          </p>
+        );
+      })}
       
     </div> // end of App
   );

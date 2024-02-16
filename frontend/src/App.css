@@ -11,6 +11,11 @@
     flex-direction: column; /* Vertical align sub element */
 }
 
+.App p {
+    margin-top: 3px; /* 上边距 */
+    margin-bottom: 5px; /* 下边距 */
+}
+
 .Pyramid {
     display: flex; 
     justify-content: center; /* Horizontal center sub element*/

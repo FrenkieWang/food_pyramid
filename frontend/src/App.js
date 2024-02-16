@@ -30,8 +30,19 @@ const App = () => {
     setIsEditingDate(true); 
   };
   const handleChangeDate = (event) => {
-    setSelectedDate(event.target.value); 
-    setIsEditingDate(false); // edit complete
+    const prevDate = selectedDate;
+    const newDateValue = event.target.value;
+    const newDate = new Date(newDateValue);
+
+    // Date Validation
+    if (newDate.toString() === "Invalid Date") { 
+      alert("Invalid date"); 
+      setSelectedDate(prevDate); 
+      setIsEditingDate(false); 
+    } else {
+      setSelectedDate(newDate); 
+      setIsEditingDate(false); 
+    }
   };  
   const formatDate = (date) => {
     const dateString = new Date(date).toISOString().split('T')[0];

@@ -181,7 +181,7 @@ const App = () => {
       <div style = {{color: 'lightskyblue'}}>Blue Button ➡ too little</div>
       <div className = "contentInner">
         {contentLines.map((content, index) => {
-          // 获取对应颜色的范围
+          // Get Color and Range of each line
           const color = Object.keys(validRanges)[index];
           const range = validRanges[color];
 

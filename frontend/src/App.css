@@ -13,7 +13,7 @@
 
 .App p {
     margin-top: 3px; 
-    margin-bottom: 5px; 
+    margin-bottom: 3px; 
 }
 
 .Pyramid {
@@ -103,4 +103,8 @@
 
 .user{
     margin-top : 20px;
+}
+
+.contentInner{
+    text-align: left;
 }

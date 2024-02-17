@@ -177,20 +177,24 @@ const App = () => {
           formatDate(selectedDate)
         )}
       </div>
-      {contentLines.map((content, index) => {
-        // 获取对应颜色的范围
-        const color = Object.keys(validRanges)[index];
-        const range = validRanges[color];
+      <div style = {{color: 'lightpink'}}>Red Button ➡ too much</div>
+      <div style = {{color: 'lightskyblue'}}>Blue Button ➡ too little</div>
+      <div className = "contentInner">
+        {contentLines.map((content, index) => {
+          // 获取对应颜色的范围
+          const color = Object.keys(validRanges)[index];
+          const range = validRanges[color];
 
-        return (
-          <p key={index} style={{ 
-            color: color,
-            backgroundColor: color === 'yellow' ? 'black' : ''
-          }}>
-            {content}: <b>[{range[0]} - {range[1]}]</b>
-          </p>
-        );
-      })}
+          return (
+            <p key={index} style={{ 
+              color: color,
+              backgroundColor: color === 'yellow' ? 'black' : ''
+            }}>
+              {content}: <b>[{range[0]} - {range[1]}]</b>
+            </p>
+          );
+        })}
+      </div>
       
     </div> // end of App
   );

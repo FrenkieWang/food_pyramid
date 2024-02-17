@@ -1,6 +1,6 @@
 /* Apply box-sizing to all elements
    ignore 'padding' and 'border' */
-* {
+   * {
     box-sizing: border-box;
 }
 
@@ -89,10 +89,6 @@
 
 .text{
     font-weight: bold;
-}
-
-.title{
-    color: gray;
 }
 
 .ageSelect{

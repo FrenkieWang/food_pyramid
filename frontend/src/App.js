@@ -127,11 +127,9 @@ const App = () => {
   return (
     <div className="App">
       <button onClick={handleEditDate}>Choose a Date</button>
-      <div className = "title">
-        <button className = "ageSelect" onClick={changeAge}>
-          Switch Pyramid
-        </button>
-      </div>
+      <button className = "ageSelect" onClick={changeAge}>
+        Switch Pyramid
+      </button>
       <div className="Pyramid">
         <div className="container" style={{ width:`${containerWidth}px`, height: `${containerHeight}px` }}>
           {Object.keys(layers).map((color, index) => (

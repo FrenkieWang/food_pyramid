@@ -138,12 +138,18 @@ const App = () => {
                 height: `${layers[color].height}px`, 
                 backgroundColor: color
               }}>
-                <button className="btn ctrl" onClick={() => handleButtonEvents(color, 1, index + 1)}>+</button>
+                <button
+                  className="btn ctrl"
+                  onClick={() => handleButtonEvents(color, 1, index + 1)}
+                  disabled={layers[color].num >= 9}>+</button>
                 <button 
                   className="btn num" 
                   style={{ backgroundColor: layers[color].btnBGColor }}
                 >{layers[color].num}</button>
-                <button className="btn ctrl" onClick={() => handleButtonEvents(color, -1, index + 1)}>-</button>
+                <button 
+                  className="btn ctrl"
+                  onClick={() => handleButtonEvents(color, -1, index + 1)}
+                  disabled={layers[color].num <= 0} >-</button>
               </div>
               {/* Add Spacer only between 1-2 and 2-3 Layer*/}
               {index === 0 || index === 1 ? <div className="spacer"></div> : null}

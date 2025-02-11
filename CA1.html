@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square with Divs</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        #app {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            border: 10px solid black;
+        }
+
+        #subHeader-text {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 24px; 
+            margin-bottom: 10px;
+        }
+        
+        #header-text {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 32px; 
+            margin-bottom: 10px;
+        }
+
+        #square {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .inner-div {
+            width: 100%; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .inner-div:nth-child(1) {
+            background-color: red;
+            margin-bottom: 20px;
+        }
+
+        .inner-div:nth-child(2) {
+            background-color: orange;
+            margin-bottom: 15px;
+        }
+
+        .inner-div:nth-child(3) {
+            background-color: yellow;
+        }
+
+        .inner-div:nth-child(4) {
+            background-color: deepskyblue;
+        }
+
+        .inner-div:nth-child(5) {
+            background-color: peru;
+        }
+
+        .inner-div:nth-child(6) {
+            background-color: lime;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            z-index: 10;
+        }
+
+        .button-container button {
+            width: 40px;
+            height: 40px;
+            border: 2px solid black;
+            border-radius: 50%;
+            font-size: 20px;
+            color: white;
+            background-color: darkgray;
+            cursor: pointer;
+        }
+
+        .button-container button.middle {
+            pointer-events: none; 
+        }
+
+        .button-container button:not(.middle) {
+            display: none;
+        }
+
+        .inner-div.hover .button-container button:not(.middle) {
+            display: inline-block;
+        }
+
+        .button-container button.middle.darkblue {
+            background-color: darkblue;
+        }
+
+        .button-container button.middle.darkred {
+            background-color: darkred;
+        }
+
+        .button-container button:disabled {
+            background-color: whitesmoke;
+            color: black;
+            cursor: not-allowed;
+        }
+
+        #overlay-square {
+            width: 0;
+            height: 0;
+            border-left: solid white;
+            border-right: solid white;
+            border-bottom: solid transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #toggle-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: gray;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #footer {
+            text-align: center;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        #footer b {
+            display: block;
+            font-weight: bold;
+        }
+
+        #date-input {
+            display: none;
+        }
+
+        #diet-standards {
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            text-align: left;
+        }
+        
+        .standard-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .standard-header span {
+            color: blue;
+        }
+
+        .standard-item {
+            color: black;
+        }
+
+        .standard-item span {
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="subHeader-text">CS230 Lab Assignment 1</div>
+        <div id="header-text">Food Pyramid</div>
+        <div id="square">
+            <div class="inner-div">
+                <div class="button-container">
+                    <button onclick="adjustHeight(this, 15)">+</button>
+                    <button class="middle">0</button>
+                    <button onclick="adjustHeight(this, -15)" disabled="true">-</button>
+                </div>
+            </div>
+            <div class="inner-div">
+                <div class="button-container">
+                    <button onclick="adjustHeight(this, 15)">+</button>
+                    <button class="middle">1</button>
+                    <button onclick="adjustHeight(this, -15)">-</button>
+                </div>
+            </div>
+            <div class="inner-div">
+                <div class="button-container">
+                    <button onclick="adjustHeight(this, 15)">+</button>
+                    <button class="middle">2</button>
+                    <button onclick="adjustHeight(this, -15)">-</button>
+                </div>
+            </div>
+            <div class="inner-div">
+                <div class="button-container">
+                    <button onclick="adjustHeight(this, 15)">+</button>
+                    <button class="middle">3</button>
+                    <button onclick="adjustHeight(this, -15)">-</button>
+                </div>
+            </div>
+            <div class="inner-div">
+                <div class="button-container">
+                    <button onclick="adjustHeight(this, 15)">+</button>
+                    <button class="middle">4</button>
+                    <button onclick="adjustHeight(this, -15)">-</button>
+                </div>
+            </div>
+            <div class="inner-div">
+                <div class="button-container">
+                    <button onclick="adjustHeight(this, 15)">+</button>
+                    <button class="middle">5</button>
+                    <button onclick="adjustHeight(this, -15)">-</button>
+                </div>
+            </div>
+            <div id="overlay-square"></div>
+        </div>
+        <button id="toggle-button" onclick="toggleStandard()">Switch to Child Standard</button>
+        <div id="footer">
+            <b>My Food Pyramid</b>
+            <b id="date-display" onclick="editDate()">[05-Feb-2021]</b>
+            <input type="date" id="date-input" onkeydown="handleDateInput(event)" onblur="updateDate()">
+            <div id="diet-standards">
+                <div id="adult-standards">
+                    <div class="standard-header">Food Pyramid for <span>Adults</span></div>
+                    <div class="standard-item">Junk Food, and Coke: <span>= 0</span></div>
+                    <div class="standard-item">Fats and oils: <span>In small <=1</span></div>
+                    <div class="standard-item">Meats, fish, eggs: <span>2</span></div>
+                    <div class="standard-item">Milk, yogurt and cheese: <span>3</span></div>
+                    <div class="standard-item">Wholemeal cereals and breads: <span>3-5</span></div>
+                    <div class="standard-item">Vegetables, salad and fruit: <span>5-7</span></div>
+                </div>
+                <div id="child-standards" style="display: none;">
+                    <div class="standard-header">Food Pyramid for <span>Childs</span></div>
+                    <div class="standard-item">Junk Food, and Coke: <span>= 0</span></div>
+                    <div class="standard-item">Fats and oils: <span>In small <=1</span></div>
+                    <div class="standard-item">Meats, fish, eggs: <span>3-4</span></div>
+                    <div class="standard-item">Milk, yogurt and cheese: <span>3</span></div>
+                    <div class="standard-item">Wholemeal cereals and breads: <span>4-5</span></div>
+                    <div class="standard-item">Vegetables, salad and fruit: <span>4-6</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const adultRanges = [
+            { min: 0, max: 0 }, // div 1
+            { min: 0, max: 1 }, // div 2
+            { min: 2, max: 2 }, // div 3
+            { min: 3, max: 3 }, // div 4
+            { min: 3, max: 5 }, // div 5
+            { min: 5, max: 7 }  // div 6
+        ];
+        const childRanges = [
+            { min: 0, max: 0 }, // div 1
+            { min: 0, max: 1 }, // div 2
+            { min: 3, max: 4 }, // div 3
+            { min: 3, max: 3 }, // div 4
+            { min: 4, max: 5 }, // div 5
+            { min: 4, max: 6 }  // div 6
+        ];
+        let validRanges = adultRanges;
+
+        const adultDefaultNums = [0, 1, 2, 3, 4, 5];
+        const childDefaultNums = [0, 1, 3, 3, 4, 5];
+        setInitialHeights(adultDefaultNums);
+
+        let currentStandard = 'adult';
+        function toggleStandard() {
+            if (currentStandard === 'adult') {
+                validRanges = childRanges;
+                currentStandard = 'child';
+                document.getElementById('toggle-button').textContent = 'Switch to Adult Standard';
+                setInitialHeights(childDefaultNums);
+                document.getElementById('adult-standards').style.display = 'none';
+                document.getElementById('child-standards').style.display = 'block';
+            } else {
+                validRanges = adultRanges;
+                currentStandard = 'adult';
+                document.getElementById('toggle-button').textContent = 'Switch to Child Standard';
+                setInitialHeights(adultDefaultNums);
+                document.getElementById('adult-standards').style.display = 'block';
+                document.getElementById('child-standards').style.display = 'none';
+            }
+
+            // Update Button Colors
+            const innerDivs = document.querySelectorAll('.inner-div');
+            innerDivs.forEach((div, index) => {
+                const middleButton = div.querySelector('.middle');
+                const currentValue = parseInt(middleButton.textContent);
+                const range = validRanges[index];
+                const inRange = currentValue >= range.min && currentValue <= range.max;
+
+                if (inRange) {
+                    middleButton.classList.remove('darkblue', 'darkred');
+                } else if (currentValue < range.min) {
+                    middleButton.classList.add('darkblue');
+                    middleButton.classList.remove('darkred');
+                } else {
+                    middleButton.classList.add('darkred');
+                    middleButton.classList.remove('darkblue');
+                }
+            });
+        }
+
+        // Set the Initial Size of 6 divs, square and overlay square
+        function setInitialHeights(numsArray) {
+            const innerDivs = document.querySelectorAll('.inner-div');
+            let heightSum = 10 + 25;
+            numsArray.forEach((num, index) => {
+                if (innerDivs[index]) {
+                    // Set the middle button text content
+                    const middleButton = innerDivs[index].querySelector('.middle');
+                    middleButton.textContent = num;
+
+                    // Set the height of each Div
+                    let height = 15 * num + 40;
+                    innerDivs[index].style.height = height + 'px';
+                    heightSum += height;
+                }
+            });
+
+            // Set the height and width of the square
+            const square = document.getElementById('square');
+            square.style.height = heightSum + 'px';
+            square.style.width = heightSum / 5 * 8 + 'px';
+ 
+            // Set the border width of the overlay square
+            const overlaySquare = document.getElementById('overlay-square');
+            overlaySquare.style.borderBottomWidth = heightSum + 'px';
+            overlaySquare.style.borderLeftWidth = heightSum / 5 * 4 + 'px';
+            overlaySquare.style.borderRightWidth = heightSum / 5 * 4 + 'px';
+        }
+
+        // Handle Button Clicks and change the heights of each Div
+        function adjustHeight(button, change) {
+            const innerDiv = button.closest('.inner-div');
+            const square = document.getElementById('square');
+            const overlaySquare = document.getElementById('overlay-square');
+            const middleButton = button.parentElement.querySelector('.middle');
+            let currentValue = parseInt(middleButton.textContent);
+
+            // Adjust the height of the inner div
+            const newHeight = innerDiv.offsetHeight + change;
+            if (newHeight >= 0) {
+                innerDiv.style.height = newHeight + 'px';
+            }
+
+            // Adjust the width and height of the square
+            const newSquareWidth = square.offsetWidth + change / 5 * 8;
+            const newSquareHeight = square.offsetHeight + change;
+            square.style.width = newSquareWidth + 'px';
+            square.style.height = newSquareHeight + 'px';
+
+            // Adjust the overlay square
+            const newBorderBottom = parseInt(overlaySquare.style.borderBottomWidth || 500) + change;
+            const newBorderLeft = parseInt(overlaySquare.style.borderLeftWidth || 400) + change / 5 * 4;
+            const newBorderRight = parseInt(overlaySquare.style.borderRightWidth || 400) + change / 5 * 4;
+            overlaySquare.style.borderBottomWidth = newBorderBottom + 'px';
+            overlaySquare.style.borderLeftWidth = newBorderLeft + 'px';
+            overlaySquare.style.borderRightWidth = newBorderRight + 'px';
+
+            // Update the middle button value
+            currentValue += change / 15;
+            middleButton.textContent = currentValue;
+
+            // Disable/Enable buttons based on the value
+            const plusButton = button.parentElement.querySelector('button:nth-child(1)');
+            const minusButton = button.parentElement.querySelector('button:nth-child(3)');
+
+            if (currentValue >= 9) {
+                plusButton.disabled = true;
+            } else {
+                plusButton.disabled = false;
+            }
+
+            if (currentValue <= 0) {
+                minusButton.disabled = true;
+            } else {
+                minusButton.disabled = false;
+            }
+
+            // Check the value range and update the button color
+            const divIndex = Array.from(innerDiv.parentElement.children).indexOf(innerDiv);
+            const range = validRanges[divIndex];
+            const inRange = currentValue >= range.min && currentValue <= range.max;
+
+            if (inRange) {
+                middleButton.classList.remove('darkblue', 'darkred');
+            } else if (currentValue < range.min) {
+                middleButton.classList.add('darkblue');
+                middleButton.classList.remove('darkred');
+            } else {
+                middleButton.classList.add('darkred');
+                middleButton.classList.remove('darkblue');
+            }
+        }
+
+        /* Hover each div and show its (+) & (-) button */
+        document.addEventListener('mousemove', function(event) {
+            const innerDivs = document.querySelectorAll('.inner-div');
+            innerDivs.forEach(div => {
+                const rect = div.getBoundingClientRect();
+                if (event.clientX >= rect.left && event.clientX <= rect.right &&
+                    event.clientY >= rect.top && event.clientY <= rect.bottom) {
+                    div.classList.add('hover');
+                } else {
+                    div.classList.remove('hover');
+                }
+            });
+        });
+
+        /* Manipulate Date Input */
+        let previousDate = '[05-Feb-2021]';
+
+        function handleDateInput(event) {
+            if (event.key === 'Enter') {
+                updateDate();
+            } else if (event.key === 'Escape') {
+                cancelDateEdit();
+            }
+        }
+
+        function editDate() {
+            const dateDisplay = document.getElementById('date-display');
+            const dateInput = document.getElementById('date-input');
+            previousDate = dateDisplay.textContent;
+            dateInput.value = formatDateForInput(dateDisplay.textContent);
+            dateInput.style.display = 'inline-block';
+            dateDisplay.style.display = 'none';
+            dateInput.focus(); // Ensure the input is focused for keyboard input
+        }
+
+        function updateDate() {
+            const dateDisplay = document.getElementById('date-display');
+            const dateInput = document.getElementById('date-input');
+            const newDate = dateInput.value;
+            dateDisplay.textContent = formatDateForDisplay(newDate);
+            dateInput.style.display = 'none';
+            dateDisplay.style.display = 'inline-block';
+        }
+
+        function cancelDateEdit() {
+            const dateDisplay = document.getElementById('date-display');
+            const dateInput = document.getElementById('date-input');
+            dateDisplay.textContent = previousDate;
+            dateInput.style.display = 'none';
+            dateDisplay.style.display = 'inline-block';
+        }
+
+        function formatDateForInput(dateStr) {
+            const parts = dateStr.replace(/[\[\]]/g, '').split('-');
+            const day = parts[0];
+            const month = parts[1];
+            const year = parts[2];
+            const monthMap = {
+                Jan: '01', Feb: '02', Mar: '03', Apr: '04', May: '05', Jun: '06',
+                Jul: '07', Aug: '08', Sep: '09', Oct: '10', Nov: '11', Dec: '12'
+            };
+            return `${year}-${monthMap[month]}-${day}`;
+        }
+
+        function formatDateForDisplay(dateStr) {
+            const parts = dateStr.split('-');
+            const year = parts[0];
+            const month = parts[1];
+            const day = parts[2];
+            const monthMap = {
+                '01': 'Jan', '02': 'Feb', '03': 'Mar', '04': 'Apr', '05': 'May', '06': 'Jun',
+                '07': 'Jul', '08': 'Aug', '09': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dec'
+            };
+            return `[${day}-${monthMap[month]}-${year}]`;
+        }
+    </script>
+</body>
+</html>

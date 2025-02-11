@@ -1,0 +1,6 @@
+{
+    "rewrites": [
+      { "source": "/", "destination": "/CA1.html" }
+    ]
+  }
+  

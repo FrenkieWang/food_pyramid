@@ -45,4 +45,4 @@ https://codepen.io/nikolaygit/pen/wnchq
 https://css-tricks.com/the-shapes-of-css/
 
 ## Deployment
-This project will be running on:
+This project will be running on: https://frenkiewang.github.io/food_pyramid/

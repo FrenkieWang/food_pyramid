@@ -1,0 +1,180 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    border: 10px solid black;
+}
+
+#subHeader-text {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 24px; 
+    margin-bottom: 10px;
+}
+
+#header-text {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 32px; 
+    margin-bottom: 10px;
+}
+
+#square {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.inner-div {
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.inner-div:nth-child(1) {
+    background-color: red;
+    margin-bottom: 20px;
+}
+
+.inner-div:nth-child(2) {
+    background-color: orange;
+    margin-bottom: 15px;
+}
+
+.inner-div:nth-child(3) {
+    background-color: yellow;
+}
+
+.inner-div:nth-child(4) {
+    background-color: deepskyblue;
+}
+
+.inner-div:nth-child(5) {
+    background-color: peru;
+}
+
+.inner-div:nth-child(6) {
+    background-color: lime;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    z-index: 10;
+}
+
+.button-container button {
+    width: 40px;
+    height: 40px;
+    border: 2px solid black;
+    border-radius: 50%;
+    font-size: 20px;
+    color: white;
+    background-color: darkgray;
+    cursor: pointer;
+}
+
+.button-container button.middle {
+    pointer-events: none; 
+}
+
+.button-container button:not(.middle) {
+    display: none;
+}
+
+.inner-div.hover .button-container button:not(.middle) {
+    display: inline-block;
+}
+
+.button-container button.middle.darkblue {
+    background-color: darkblue;
+}
+
+.button-container button.middle.darkred {
+    background-color: darkred;
+}
+
+.button-container button:disabled {
+    background-color: whitesmoke;
+    color: black;
+    cursor: not-allowed;
+}
+
+#overlay-square {
+    width: 0;
+    height: 0;
+    border-left: solid white;
+    border-right: solid white;
+    border-bottom: solid transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#toggle-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: gray;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#footer {
+    text-align: center;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+#footer b {
+    display: block;
+    font-weight: bold;
+}
+
+#date-input {
+    display: none;
+}
+
+#diet-standards {
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+}
+
+.standard-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.standard-header span {
+    color: blue;
+}
+
+.standard-item {
+    color: black;
+}
+
+.standard-item span {
+    color: blue;
+    font-weight: bold;
+}

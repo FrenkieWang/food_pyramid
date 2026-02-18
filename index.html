@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Pyramid</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="header-text">Food Pyramid</div>
+        <div id="square">
+            <div class="inner-div">
+                <div class="button-container">
+                    <button onclick="adjustHeight(this, 15)">+</button>
+                    <button class="middle">0</button>
+                    <button onclick="adjustHeight(this, -15)" disabled="true">-</button>
+                </div>
+            </div>
+            <div class="inner-div">
+                <div class="button-container">
+                    <button onclick="adjustHeight(this, 15)">+</button>
+                    <button class="middle">1</button>
+                    <button onclick="adjustHeight(this, -15)">-</button>
+                </div>
+            </div>
+            <div class="inner-div">
+                <div class="button-container">
+                    <button onclick="adjustHeight(this, 15)">+</button>
+                    <button class="middle">2</button>
+                    <button onclick="adjustHeight(this, -15)">-</button>
+                </div>
+            </div>
+            <div class="inner-div">
+                <div class="button-container">
+                    <button onclick="adjustHeight(this, 15)">+</button>
+                    <button class="middle">3</button>
+                    <button onclick="adjustHeight(this, -15)">-</button>
+                </div>
+            </div>
+            <div class="inner-div">
+                <div class="button-container">
+                    <button onclick="adjustHeight(this, 15)">+</button>
+                    <button class="middle">4</button>
+                    <button onclick="adjustHeight(this, -15)">-</button>
+                </div>
+            </div>
+            <div class="inner-div">
+                <div class="button-container">
+                    <button onclick="adjustHeight(this, 15)">+</button>
+                    <button class="middle">5</button>
+                    <button onclick="adjustHeight(this, -15)">-</button>
+                </div>
+            </div>
+            <div id="overlay-square"></div>
+        </div>
+        <button id="toggle-button" onclick="toggleStandard()">Switch to Child Standard</button>
+        <div id="footer">
+            <b>My Food Pyramid</b>
+            <b id="date-display" onclick="editDate()">[05-Feb-2021]</b>
+            <input type="date" id="date-input" onkeydown="handleDateInput(event)" onblur="updateDate()">
+            <div id="diet-standards">
+                <div id="adult-standards">
+                    <div class="standard-header">Food Pyramid for <span>Adults</span></div>
+                    <div class="standard-item">Junk Food, and Coke: <span>= 0</span></div>
+                    <div class="standard-item">Fats and oils: <span>In small <=1</span></div>
+                    <div class="standard-item">Meats, fish, eggs: <span>2</span></div>
+                    <div class="standard-item">Milk, yogurt and cheese: <span>3</span></div>
+                    <div class="standard-item">Wholemeal cereals and breads: <span>3-5</span></div>
+                    <div class="standard-item">Vegetables, salad and fruit: <span>5-7</span></div>
+                </div>
+                <div id="child-standards" style="display: none;">
+                    <div class="standard-header">Food Pyramid for <span>Childs</span></div>
+                    <div class="standard-item">Junk Food, and Coke: <span>= 0</span></div>
+                    <div class="standard-item">Fats and oils: <span>In small <=1</span></div>
+                    <div class="standard-item">Meats, fish, eggs: <span>3-4</span></div>
+                    <div class="standard-item">Milk, yogurt and cheese: <span>3</span></div>
+                    <div class="standard-item">Wholemeal cereals and breads: <span>4-5</span></div>
+                    <div class="standard-item">Vegetables, salad and fruit: <span>4-6</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
